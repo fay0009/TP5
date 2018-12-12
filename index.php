@@ -4,7 +4,7 @@
 <meta charset=utf-8" />
 </head>
 <body>
-<center><h1>TP Captcha</h1></center>
+<center><h1>TP Captcha</h1>
 <p>Saisissez le code ci-dessous</p>
 <?php
 session_start();
@@ -23,6 +23,8 @@ if (isset($_POST['send'])) {
 	}elseif ($answer == $_SESSION['code']) {
 		//$affichage prendra cette valeur ce qui effacera l'image du captcha
 		$affichage = "<p style='color: green;' >Code valide</p>";
+		//si le code est correct le code recharge la page pour faire apparaitre un nouveau captcha
+		header("Refresh: 3; URL=#" );
 	//si l'input est incorrecte
 	}else{
 		echo "<p style='color: red;'>Code invalide</p>";
@@ -34,6 +36,7 @@ echo $affichage;
 	<input type="text" name="captcha">
 	<input type="submit" name="send">
 </form>
+</center>
 </body>
 </html>
 <?php
